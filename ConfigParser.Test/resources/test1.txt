@@ -1,0 +1,10 @@
+section1:
+		key1=value1
+		key2=value2          /* comment */
+		key3="value3-1 value3-2"
+
+/* section2 */
+section2:
+  key11=value11
+  key22=value22
+  key33="value33-1 value33-2"
