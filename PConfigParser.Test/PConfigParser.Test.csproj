@@ -16,11 +16,11 @@
     <Folder Include="resources\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ConfigParser\ConfigParser.csproj" />
-  </ItemGroup>
-  <ItemGroup>
     <None Update="resources\test1.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PConfigParser\PConfigParser.csproj" />
   </ItemGroup>
 </Project>
