@@ -10,4 +10,8 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType></DebugType>
   </PropertyGroup>
+  <ItemGroup>
+    <Folder Include="ParsedObjects\" />
+    <Folder Include="Parsers\" />
+  </ItemGroup>
 </Project>

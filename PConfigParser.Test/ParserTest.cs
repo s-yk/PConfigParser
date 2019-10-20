@@ -1,9 +1,9 @@
 using System.IO;
 using NUnit.Framework;
 
-namespace ConfigParser
+namespace PConfigParser
 {
-    public class ConfigParserTest
+    public class ParserTest
     {
         private Parser parser;
 

@@ -2,8 +2,10 @@
 using System.IO;
 using System.Text;
 using PConfigParser;
+using PConfigParser.ParsedObjects;
+using PConfigParser.Parsers;
 
-namespace ConfigParser
+namespace PConfigParser
 {
     public class Parser
     {
@@ -18,6 +20,10 @@ namespace ConfigParser
                     if (line.Length == 0) continue;
 
                     var lineType = CheckLineType(line);
+                    if (lineType == LineType.COMMENT) continue;
+
+                    var parser = createParser(lineType);
+                    if (!parser.TryParse(line, out var parsedObject)) continue;
                 }
             }
         }
@@ -36,6 +42,19 @@ namespace ConfigParser
             }
 
             return LineType.SECTION;
+        }
+
+        private ILineParser<ParsedObject> createParser(LineType lineType)
+        {
+            switch(lineType)
+            {
+                case LineType.SECTION:
+                    return new SectionParser() as ILineParser<ParsedObject>;
+                case LineType.PARAMETER:
+                    return new KeyValueParser() as ILineParser<ParsedObject>;
+                default:
+                    return new SectionParser() as ILineParser<ParsedObject>;
+            }
         }
     }
 }

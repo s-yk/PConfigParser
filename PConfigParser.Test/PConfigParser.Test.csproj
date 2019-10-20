@@ -4,6 +4,7 @@
     <TargetFramework>netcoreapp2.1</TargetFramework>
 
     <IsPackable>false</IsPackable>
+    <RootNamespace>PConfigParser</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
@@ -14,6 +15,7 @@
 
   <ItemGroup>
     <Folder Include="resources\" />
+    <Folder Include="Parsers\" />
   </ItemGroup>
   <ItemGroup>
     <None Update="resources\test1.txt">
