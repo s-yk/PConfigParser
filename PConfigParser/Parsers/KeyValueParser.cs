@@ -4,7 +4,7 @@ using PConfigParser.ParsedObjects;
 
 namespace PConfigParser.Parsers
 {
-    public class KeyValueParser : ILineParser<KeyValue>
+    public class KeyValueParser
     {
         private const string pattern = @"(?<key>.+?)=(?<value>.+)";
         private const string commentPattern = @"/\*.*?\*/";

@@ -4,16 +4,16 @@ using PConfigParser.ParsedObjects;
 
 namespace PConfigParser.Parsers
 {
-    public class SectionParser : ILineParser<BaseSection>
+    public class SectionParser
     {
         private const string pattern = @"(?<name>[a-zA-Z]+)(?<no>\d+)?:";
         private const string commentPattern = @"/\*.*?\/";
         private static readonly Regex regex = new Regex(pattern, RegexOptions.Compiled);
         private static readonly Regex comRegex = new Regex(commentPattern, RegexOptions.Compiled); 
 
-        public bool TryParse(string line, out BaseSection parsedObject)
+        public bool TryParse(string line, out BaseSection.Builder sectionBuilder)
         {
-            parsedObject = null;
+            sectionBuilder = null;
             var body =  comRegex.Replace(line.Trim(), string.Empty);
             var match = regex.Match(body);
             if (!match.Success)
@@ -30,10 +30,10 @@ namespace PConfigParser.Parsers
             switch(name)
             {
                 case "section":
-                    parsedObject = new Section(name);
+                    sectionBuilder = new Section.SectionBuilder { Name = name, };
                     return true;
                 case "sec":
-                    parsedObject = new Sec(name, no);
+                    sectionBuilder = new Sec.SecBuilder { Name = name, No = no };
                     return true;
                 default:
                     return false;

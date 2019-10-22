@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
+
 namespace PConfigParser.ParsedObjects
 {
-    public class BaseSection : ParsedObject
+    public abstract class BaseSection
     {
         public string Name { get; private set; }
 
@@ -13,6 +15,16 @@ namespace PConfigParser.ParsedObjects
         {
             this.Name = name;
             this.No = no;
+        }
+
+        public abstract class Builder
+        {
+            public string Name { get; set; }
+            public int No { get; set; }
+
+            public abstract BaseSection Build();
+            public abstract void SetValue(KeyValue kv);
+            public abstract void AddToConfigBuilder(Config.Builder configBuilder);
         }
     }
 }

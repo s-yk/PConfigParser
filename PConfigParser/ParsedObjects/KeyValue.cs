@@ -1,7 +1,7 @@
 ﻿using System;
 namespace PConfigParser.ParsedObjects
 {
-    public class KeyValue : ParsedObject
+    public class KeyValue
     {
         public string Key { get; private set; }
         public string Value { get; private set; }
