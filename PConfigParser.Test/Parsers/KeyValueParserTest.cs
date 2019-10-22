@@ -17,20 +17,28 @@ namespace PConfigParser.Parsers
         public void KeyValue文字列からオブジェクトを生成する()
         {
             Assert.IsTrue(parser.TryParse("key1=value1", out var keyValue));
-            Assert.AreEqual(keyValue.Key, "key1");
-            Assert.AreEqual(keyValue.Value, "value1");
+            Assert.AreEqual("key1", keyValue.Key);
+            Assert.AreEqual("value1", keyValue.Value);
 
             Assert.IsTrue(parser.TryParse("  key2=value2", out keyValue));
-            Assert.AreEqual(keyValue.Key, "key2");
-            Assert.AreEqual(keyValue.Value, "value2");
+            Assert.AreEqual("key2", keyValue.Key);
+            Assert.AreEqual("value2", keyValue.Value);
 
             Assert.IsTrue(parser.TryParse("\tkey3=value3", out keyValue));
-            Assert.AreEqual(keyValue.Key, "key3");
-            Assert.AreEqual(keyValue.Value, "value3");
+            Assert.AreEqual("key3", keyValue.Key);
+            Assert.AreEqual("value3", keyValue.Value);
 
             Assert.IsTrue(parser.TryParse("key4=value4     /* comment  */", out keyValue));
-            Assert.AreEqual(keyValue.Key, "key4");
-            Assert.AreEqual(keyValue.Value, "value4");
+            Assert.AreEqual("key4", keyValue.Key);
+            Assert.AreEqual("value4", keyValue.Value);
+
+            Assert.IsTrue(parser.TryParse("key5=\"  value5   \"", out keyValue));
+            Assert.AreEqual("key5", keyValue.Key);
+            Assert.AreEqual("  value5   ", keyValue.Value);
+
+            Assert.IsTrue(parser.TryParse("key6=\"  value6   ", out keyValue));
+            Assert.AreEqual("key6", keyValue.Key);
+            Assert.AreEqual("\"  value6", keyValue.Value);
         }
     }
 }
